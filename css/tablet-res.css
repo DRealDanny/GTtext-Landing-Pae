@@ -20,6 +20,7 @@
   }
   .hero__title { font-size: clamp(30px, 5vw, 42px); }
   .ticket { max-width: 480px; }
+  .host-card { max-width: 480px; padding: 32px 28px; }
 
   /* Qualifier */
   .qualifier-grid { grid-template-columns: 1fr; gap: 20px; }

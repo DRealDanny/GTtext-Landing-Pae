@@ -204,6 +204,40 @@ h2 {
   margin-top: 16px;
 }
 
+/* ---------- Host card (hero right panel) ---------- */
+.host-card {
+  background: rgba(247, 246, 242, 0.04);
+  border: 1px solid rgba(247, 246, 242, 0.14);
+  border-radius: 8px;
+  padding: 40px 36px;
+}
+.host-card__label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+}
+.host-card__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.host-card__role {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: rgba(247, 246, 242, 0.6);
+}
+.host-card__rule {
+  height: 1px;
+  background: rgba(247, 246, 242, 0.14);
+  margin: 22px 0;
+}
+
 /* ---------- Ticket / Boarding pass signature ---------- */
 .ticket {
   position: relative;
@@ -526,19 +560,47 @@ h2 {
   border-radius: 20px;
 }
 
-/* ---------- Urgency banner ---------- */
+/* ---------- Urgency banner (marquee) ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .urgency-banner {
   background: var(--gold);
+  overflow: hidden;
+}
+.marquee {
+  overflow: hidden;
   padding: 18px 0;
 }
-.urgency-banner__inner p {
-  margin: 0;
-  text-align: center;
+.marquee__track {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee-scroll 78s linear infinite;
+}
+.marquee__track span {
   font-family: var(--font-mono);
   font-size: 13.5px;
   letter-spacing: 0.03em;
   color: var(--navy-deep);
   font-weight: 500;
+  padding: 0 16px;
+}
+.marquee__dot { opacity: 0.55; padding: 0 4px; }
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 /* ---------- Two paths ---------- */

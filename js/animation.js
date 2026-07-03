@@ -21,7 +21,6 @@
     .from('.hero__title', { opacity: 0, y: 22, duration: 0.8 }, '-=0.35')
     .from('.hero__sub', { opacity: 0, y: 16, duration: 0.6 }, '-=0.4')
     .from('.hero__meta li', { opacity: 0, y: 10, duration: 0.5, stagger: 0.08 }, '-=0.3')
-    .from('.hero__hosts', { opacity: 0, y: 10, duration: 0.5 }, '-=0.25')
     .from('.hero .btn', { opacity: 0, y: 10, duration: 0.5 }, '-=0.25')
     .from('.hero__urgency', { opacity: 0, duration: 0.5 }, '-=0.2')
     .from('.gsap-ticket', { opacity: 0, x: 30, duration: 0.9, ease: 'power3.out' }, '-=0.9');

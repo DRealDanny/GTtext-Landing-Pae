@@ -35,44 +35,20 @@
         <li><svg class="icon" viewBox="0 0 24 24"><path d="M4 20v-6a8 8 0 0 1 16 0v6"/><path d="M4 20h16"/></svg> Only 30 Seats</li>
       </ul>
 
-      <p class="hero__hosts gsap-reveal">With <strong>Bisi Akintayo</strong>, CEO GText Suites &amp; <strong>Dr. Mona Zoughaib</strong></p>
-
       <a href="#register" class="btn btn--primary gsap-reveal">Reserve Your Seat Now →</a>
       <p class="hero__urgency gsap-reveal">⚡ Closes July 15th — price rises to 500 AED after.</p>
     </div>
 
-    <!-- Signature: ticket / boarding-pass visual -->
-    <div class="ticket gsap-ticket" aria-hidden="true">
-      <div class="ticket__top">
-        <span class="ticket__label">Admit One</span>
-        <span class="ticket__seat">SEAT 01–30</span>
-      </div>
-      <div class="ticket__row">
-        <div>
-          <span class="ticket__k">Event</span>
-          <span class="ticket__v">Transform Your Knowledge</span>
-        </div>
-        <div>
-          <span class="ticket__k">Date</span>
-          <span class="ticket__v">25 JUL 2026</span>
-        </div>
-      </div>
-      <div class="ticket__row">
-        <div>
-          <span class="ticket__k">Venue</span>
-          <span class="ticket__v">Dubai, UAE</span>
-        </div>
-        <div>
-          <span class="ticket__k">Fare</span>
-          <span class="ticket__v">250 AED</span>
-        </div>
-      </div>
-      <div class="ticket__perf" aria-hidden="true"></div>
-      <div class="ticket__stub">
-        <span class="ticket__k">Boarding closes</span>
-        <span class="ticket__v">15 JUL 2026</span>
-      </div>
+    <!-- Host card -->
+    <div class="host-card gsap-ticket" aria-hidden="true">
+      <span class="host-card__label">With</span>
+      <p class="host-card__name">Bisi Akintayo</p>
+      <p class="host-card__role">CEO, GText Suites Dubai</p>
+      <div class="host-card__rule"></div>
+      <p class="host-card__name">Dr. Mona Zoughaib</p>
+      <p class="host-card__role">International Business Strategist</p>
     </div>
+
   </div>
 </section>
 
@@ -330,10 +306,30 @@
   </div>
 </section>
 
-<!-- ============ URGENCY BANNER ============ -->
+<!-- ============ URGENCY BANNER (marquee) ============ -->
 <section class="urgency-banner gsap-reveal">
-  <div class="container urgency-banner__inner">
-    <p>🪺 Only 30 seats &nbsp;|&nbsp; ⏰ Early Bird: 250 AED closes July 15th &nbsp;|&nbsp; 📈 Price rises to 500 AED after</p>
+  <span class="sr-only">Only 30 seats. Early Bird: 250 AED closes July 15th. Price rises to 500 AED after.</span>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>🪺 Only 30 seats</span><span class="marquee__dot">•</span>
+      <span>⏰ Early Bird: 250 AED closes July 15th</span><span class="marquee__dot">•</span>
+      <span>📈 Price rises to 500 AED after</span><span class="marquee__dot">•</span>
+      <span>🪺 Only 30 seats</span><span class="marquee__dot">•</span>
+      <span>⏰ Early Bird: 250 AED closes July 15th</span><span class="marquee__dot">•</span>
+      <span>📈 Price rises to 500 AED after</span><span class="marquee__dot">•</span>
+      <span>🪺 Only 30 seats</span><span class="marquee__dot">•</span>
+      <span>⏰ Early Bird: 250 AED closes July 15th</span><span class="marquee__dot">•</span>
+      <span>📈 Price rises to 500 AED after</span><span class="marquee__dot">•</span>
+      <span>🪺 Only 30 seats</span><span class="marquee__dot">•</span>
+      <span>⏰ Early Bird: 250 AED closes July 15th</span><span class="marquee__dot">•</span>
+      <span>📈 Price rises to 500 AED after</span><span class="marquee__dot">•</span>
+      <span>🪺 Only 30 seats</span><span class="marquee__dot">•</span>
+      <span>⏰ Early Bird: 250 AED closes July 15th</span><span class="marquee__dot">•</span>
+      <span>📈 Price rises to 500 AED after</span><span class="marquee__dot">•</span>
+      <span>🪺 Only 30 seats</span><span class="marquee__dot">•</span>
+      <span>⏰ Early Bird: 250 AED closes July 15th</span><span class="marquee__dot">•</span>
+      <span>📈 Price rises to 500 AED after</span><span class="marquee__dot">•</span>
+    </div>
   </div>
 </section>
 
