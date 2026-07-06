@@ -44,6 +44,11 @@
   /* Checklist */
   .checklist li { font-size: 15px; padding-left: 28px; }
 
+  .certificate-badge { flex-direction: column; gap: 12px; padding: 20px 20px; }
+  .certificate-badge__icon { font-size: 24px; }
+  .certificate-badge__label { font-size: 11px; }
+  .certificate-badge__text { font-size: 14px; }
+
   /* Qualifier */
   .qcard { padding: 24px; }
   .qcard h3 { font-size: 18px; }
