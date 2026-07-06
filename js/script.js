@@ -76,32 +76,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  /* ---------- Sticky mobile CTA: hide once real CTAs are in view ---------- */
-  var stickyCta = document.getElementById('stickyCta');
-  var registerSection = document.getElementById('register');
-
-  if (stickyCta && registerSection && 'IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        stickyCta.style.transform = entry.isIntersecting ? 'translateY(120%)' : 'translateY(0)';
-      });
-    }, { threshold: 0.15 });
-
-    observer.observe(registerSection);
-  }
-
-  /* Also hide sticky CTA near the very top (hero already has its own CTA) */
-  var heroSection = document.getElementById('hero');
-  if (stickyCta && heroSection && 'IntersectionObserver' in window) {
-    var heroObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) stickyCta.style.transform = 'translateY(120%)';
-      });
-    }, { threshold: 0.2 });
-
-    heroObserver.observe(heroSection);
-  }
-
   /* ---------- Scroll to top ---------- */
   var scrollTopBtn = document.getElementById('scrollTop');
 

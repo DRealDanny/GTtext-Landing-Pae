@@ -128,8 +128,8 @@ h2 {
   align-items: flex-start;
   gap: 20px;
   background: var(--white);
-  border: 1px solid rgba(200, 155, 74, 0.35);
-  border-left: 4px solid var(--gold);
+  border: 1px solid rgba(46, 125, 79, 0.3);
+  border-left: 4px solid #2E7D4F;
   border-radius: 6px;
   padding: 26px 28px;
   margin-top: 34px;
@@ -146,7 +146,7 @@ h2 {
   font-size: 12px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: #2E7D4F;
   font-weight: 600;
   margin-bottom: 8px;
 }
@@ -708,9 +708,6 @@ h2 {
   color: var(--gold-light);
   margin-top: 18px;
 }
-
-/* ---------- Sticky mobile CTA (hidden on desktop) ---------- */
-.sticky-cta { display: none; }
 
 /* ---------- Scroll to top ---------- */
 .scroll-top {
