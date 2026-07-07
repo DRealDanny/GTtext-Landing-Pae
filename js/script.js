@@ -39,19 +39,68 @@ document.addEventListener('DOMContentLoaded', function () {
   var modalVideoWrap = document.getElementById('modalVideoWrap');
   var closeButtons = modal ? modal.querySelectorAll('[data-close]') : [];
   var lastFocusedEl = null;
+  var currentPlayer = null;
+  var playerScriptPromise = null;
+
+  // Load the Vimeo Player SDK once, only when the modal is first opened —
+  // keeps it off the initial page load entirely.
+  function loadVimeoPlayerScript() {
+    if (window.Vimeo && window.Vimeo.Player) return Promise.resolve();
+    if (playerScriptPromise) return playerScriptPromise;
+
+    playerScriptPromise = new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = 'https://player.vimeo.com/api/player.js';
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+    return playerScriptPromise;
+  }
 
   function openModal() {
-    var vimeoId = videoTrigger.getAttribute('data-vimeo-id') || '76979871';
-    // Responsive Vimeo embed — player fills the 16:9 wrapper defined in CSS (.modal__video)
-    modalVideoWrap.innerHTML =
-      '<iframe src="https://player.vimeo.com/video/' + vimeoId + '?autoplay=1&title=0&byline=0&portrait=0" ' +
-      'allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" ' +
-      'title="GText Suites Dubai — Participant Testimonials"></iframe>';
+    var vimeoId = videoTrigger.getAttribute('data-video-id') || '76979871';
 
     lastFocusedEl = document.activeElement;
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+
+    // Reset sizing from any previous open before the new video's real
+    // dimensions come back — falls back to a normal 16:9 box until then.
+    modalVideoWrap.classList.remove('modal__video--portrait');
+    modalVideoWrap.style.removeProperty('aspect-ratio');
+    modalVideoWrap.innerHTML = '';
+
+    loadVimeoPlayerScript().then(function () {
+      currentPlayer = new Vimeo.Player(modalVideoWrap, {
+        id: vimeoId,
+        autoplay: true,
+        byline: false,
+        title: false,
+        portrait: false
+      });
+
+      // Once we know the video's real width/height, size the box to match
+      // instead of forcing every video into a fixed landscape frame.
+      currentPlayer.ready().then(function () {
+        return Promise.all([currentPlayer.getVideoWidth(), currentPlayer.getVideoHeight()]);
+      }).then(function (dims) {
+        var w = dims[0], h = dims[1];
+        if (!w || !h) return;
+        modalVideoWrap.style.aspectRatio = w + ' / ' + h;
+        if (h > w) {
+          modalVideoWrap.classList.add('modal__video--portrait');
+        }
+      }).catch(function () { /* keep the 16:9 fallback */ });
+    }).catch(function () {
+      // SDK failed to load (offline, blocked, etc.) — fall back to a plain iframe
+      modalVideoWrap.innerHTML =
+        '<iframe src="https://player.vimeo.com/video/' + vimeoId + '?autoplay=1&title=0&byline=0&portrait=0" ' +
+        'allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" ' +
+        'title="GText Suites Dubai — Participant Testimonials"></iframe>';
+    });
+
     var closeBtn = modal.querySelector('.modal__close');
     if (closeBtn) closeBtn.focus();
   }
@@ -60,7 +109,15 @@ document.addEventListener('DOMContentLoaded', function () {
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+
+    if (currentPlayer && currentPlayer.destroy) {
+      currentPlayer.destroy().catch(function () {});
+      currentPlayer = null;
+    }
     modalVideoWrap.innerHTML = ''; // stop playback
+    modalVideoWrap.classList.remove('modal__video--portrait');
+    modalVideoWrap.style.removeProperty('aspect-ratio');
+
     if (lastFocusedEl) lastFocusedEl.focus();
   }
 

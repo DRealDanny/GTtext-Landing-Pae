@@ -508,15 +508,27 @@ h2 {
 .modal__body {
   position: relative;
   z-index: 1;
-  width: min(920px, 90vw);
+  max-width: 92vw;
+  max-height: 88vh;
 }
 .modal__video {
   position: relative;
-  width: 100%;
-  padding-top: 56.25%;
   background: #000;
   border-radius: 6px;
   overflow: hidden;
+  /* Fallback box until the Vimeo Player SDK reports the real dimensions —
+     most testimonial-style embeds are landscape, so default to 16:9. */
+  aspect-ratio: 16 / 9;
+  width: min(920px, 92vw);
+  max-height: 88vh;
+}
+/* Portrait video (e.g. a phone-shot testimonial) — constrain by height
+   instead of width, so it actually uses the vertical space on mobile
+   and tablet rather than sitting pillarboxed in a wide landscape frame. */
+.modal__video--portrait {
+  width: auto;
+  height: min(88vh, 700px);
+  max-width: 92vw;
 }
 .modal__video iframe {
   position: absolute;
