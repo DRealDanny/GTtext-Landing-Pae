@@ -52,4 +52,6 @@
   .receipt__row { padding: 16px 20px; font-size: 14.5px; }
 
   .btn { padding: 15px 28px; font-size: 15px; }
+
+  .cert-moment img { height: 400px; }
 }

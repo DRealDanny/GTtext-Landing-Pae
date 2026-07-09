@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   /* ---------- Vimeo popup modal ---------- */
-  var videoTrigger = document.getElementById('videoTrigger');
+  var videoTriggers = document.querySelectorAll('.video-trigger');
   var modal = document.getElementById('videoModal');
   var modalVideoWrap = document.getElementById('modalVideoWrap');
   var closeButtons = modal ? modal.querySelectorAll('[data-close]') : [];
@@ -58,8 +58,10 @@ document.addEventListener('DOMContentLoaded', function () {
     return playerScriptPromise;
   }
 
-  function openModal() {
-    var vimeoId = videoTrigger.getAttribute('data-video-id') || '76979871';
+  // Accepts the specific button that was clicked, so each trigger can point
+  // at its own video via its own data-video-id — no shared ID needed.
+  function openModal(triggerEl) {
+    var vimeoId = triggerEl.getAttribute('data-video-id') || '76979871';
 
     lastFocusedEl = document.activeElement;
     modal.classList.add('is-open');
@@ -121,9 +123,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (lastFocusedEl) lastFocusedEl.focus();
   }
 
-  if (videoTrigger) {
-    videoTrigger.addEventListener('click', openModal);
-  }
+  videoTriggers.forEach(function (trigger) {
+    trigger.addEventListener('click', function () {
+      openModal(trigger);
+    });
+  });
   closeButtons.forEach(function (btn) {
     btn.addEventListener('click', closeModal);
   });
